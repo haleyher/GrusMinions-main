@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@expo/config-plugins": "^7.8.4",
+    "dotenv": "^16.4.5",
+    "expo": "^50.0.7",
+    "expo-activity-feed": "^1.1.1"
+  },
+  "devDependencies": {
+    "react-native-dotenv": "^3.4.10"
+  }
+}
