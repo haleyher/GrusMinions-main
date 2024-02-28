@@ -1,5 +1,6 @@
-import { StyleSheet, Button, SafeAreaView, Image, ImageURISource, ImageProps as DefaultImageProps,} from 'react-native';
+import { StyleSheet, Button, SafeAreaView, Image} from 'react-native';
 import { Text, View} from '@/components/Themed';
+import {Link} from 'expo-router'
 import { Camera } from 'expo-camera';
 import { useState, useRef, useEffect } from 'react';
 import {shareAsync} from 'expo-sharing';
@@ -11,9 +12,7 @@ export default function TabTwoScreen() {
   const [hasCameraPermission, setHasCameraPermission] = useState<boolean | undefined>();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState<boolean | undefined>();
   const [photo, setPhoto] = useState<boolean | undefined>();
-  type ImageProps = DefaultImageProps & {
-    source: ImageURISource;
-  };
+
 
   useEffect(() => {
     (async () => {
@@ -41,6 +40,7 @@ let takePic = async () => {
   setPhoto(newPhoto);
 };
 
+
 if (photo) {
   let sharePic = () => {
     shareAsync(photo.uri).then(() => {
@@ -54,12 +54,17 @@ if (photo) {
     });
   };
 
+  
+
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
       <Button title="Share" onPress={sharePic} />
       {hasMediaLibraryPermission ? <Button title="Save" onPress={savePhoto} /> : undefined}
       <Button title="Discard" onPress={() => setPhoto(undefined)} />
+      <Link href="/results" asChild>
+      <Button title="Results" />
+      </Link>
     </SafeAreaView>
   );
   }
@@ -77,6 +82,8 @@ if (photo) {
   
   );
 }
+
+
 
  
 
