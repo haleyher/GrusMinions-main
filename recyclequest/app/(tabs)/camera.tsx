@@ -1,6 +1,6 @@
 import { StyleSheet, Button, SafeAreaView, Image} from 'react-native';
 import { Text, View} from '@/components/Themed';
-import {Link} from 'expo-router'
+import {Link} from 'expo-router';
 import { Camera } from 'expo-camera';
 import { useState, useRef, useEffect } from 'react';
 import {shareAsync} from 'expo-sharing';

@@ -1,30 +1,32 @@
-
 from flask import Flask, request, jsonify
-import joblib
+import pickle
+import numpy as np
+from utils import predict_image
 
 app = Flask(__name__)
+image = '/Users/honiluna/Desktop/GrusMinions-main/recyclequest/waterbottle.png'
 
-# Load the trained model
-model = joblib.load('recyclequest/result-resnet50.pkl')
+@app.route('/api/predict', methods=['POST'])
+def predicting():
+    data = request.get_json(force=True)  # Get data posted as a json
+    image = data['file']
+    # image = '/Users/honiluna/Desktop/GrusMinions-main/recyclequest/waterbottle.png'
+    prediction = predict_image(image)
+    return jsonify({'prediction': prediction}) 
+    return prediction
+    
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Receive input data from the request
-    data = request.json
+@app.route('/')
+def index():
     
-    # Preprocess input data
-    # Example: Scale input data using StandardScaler
-    input_data = data['input']
-    input_data_scaled = scaler.transform([input_data])
+    prediction = predict_image(image)
+    # return jsonify({'prediction': prediction}) 
+    bob = f'naxjcdns {prediction[0]}'
+
+    return bob
     
-    # Make predictions using the loaded model
-    prediction = model.predict(input_data_scaled)[0]
-    
-    # Make predictions using the loaded model
-    prediction = model.predict([data['input']])[0]  # Assuming 'input' is the key for input data
-    
-    # Return the predictions
-    return jsonify({'prediction': prediction})
+    # return 'Web App with Python Flask!'
+   
 
 if __name__ == '__main__':
     app.run(debug=True)

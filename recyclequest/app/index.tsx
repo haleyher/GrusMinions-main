@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 
 
 export default function TabOneScreen(props: { onPress: any; title?: "Sign In" | undefined; }) {
-  const { onPress, title = 'Sign In' } = props;
+  const { onPress, title = 'Recycle!' } = props;
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Recycle Quest</Text>
@@ -15,13 +15,12 @@ export default function TabOneScreen(props: { onPress: any; title?: "Sign In" | 
       {/* <Link href="/two" asChild> 
       <Pressable> <Text>About</Text> </Pressable></Link> */}
       
-      <Link href="/two" asChild>
+      <Link href="/login" asChild>
       <Pressable style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </Pressable>
     </Link>
-  
-     
+
     </View>
   );
 }
