@@ -32,7 +32,7 @@ export default function TabTwoScreen() {
         <View style={styles.signin} >
           <View>
             <View>
-             <Text>Username:</Text> 
+            
               <TextInput
               style={styles.input}
                 // value={userName}
@@ -44,7 +44,7 @@ export default function TabTwoScreen() {
 
           <View>
             <View>
-             <Text> Password:</Text>
+             
               <TextInput
               style={styles.input}
                 // value={passwordAttempt}
