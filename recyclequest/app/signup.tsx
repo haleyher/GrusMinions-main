@@ -1,58 +1,11 @@
-import { StyleSheet, Pressable, TextInput } from 'react-native';
-import EditScreenInfo from '@/components/EditScreenInfo';
+import { StyleSheet, Pressable, TextInput,Button  } from 'react-native';
 import { Text, View} from '@/components/Themed';
 import { Link } from 'expo-router';
 import React from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import fetch from 'node-fetch-native';
-
-
-const data = {
-
-
-    displayName: 'Fred Flintstone',
-    userName: 'bob',
-    password: 'Flintstone',
-    county: 'jones'
- 
-}
-
-
-
-// axios.post('https://vectorapi-y9k3.onrender.com/api/users', data, 
-// {"headers": {
-    
-//   "content-type": "application/json",
-  
-//   },
-  
-//   })
-//   .then(response => {
-//     console.log(response.data);
-//   })
-//   .catch(error => {
-//     console.error("Error sending data: ", error);
-//   });
-
-//   const apiUrl = 'https://vectorapi-y9k3.onrender.com/api/profile/jacob';
-
-
-  // fetch(apiUrl)
-  // .then(response => {
-  //   if (!response.ok) {
-  //     throw new Error('Network response was not ok');
-  //   }
-  //   return response.json();
-  // })
-  // .then(userName => {
-  //   // Process the retrieved user data
-  //   console.log('User Data:', userName);
-  // })
-  // .catch(error => {
-  //   console.error('Error:', error);
-  // });
-
-
+import {useSignup} from './hooks/useSignup';
   
 
 // const TextInputExample = () => {
@@ -62,12 +15,46 @@ const data = {
   
 // };
 
+const data = {
+      displayName: "bobby",
+      userName: "bob", 
+      password: "bobbyyyyy", 
+      county: "bob",
+      
+  
+  };  
+
+  axios.post('https://vectorapi-y9k3.onrender.com/api/users', data, 
+  {"headers": {
+      
+    "content-type": "application/json",
+    
+    },
+  })
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error("Error sending data: ", error);
+  });
+
 
 
 export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | undefined; }) {
   const { onPress, title = 'Sign Up' } = props;
-  const [text, onChangeText] = React.useState('');
-  const [number, onChangeNumber] = React.useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [county, setCounty] = useState('');
+  const { signup, error, isLoading } = useSignup();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await signup(displayName, userName, password, county);
+  };
+
+
   
 
   return (
@@ -75,33 +62,64 @@ export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | 
 
       <Text style={styles.h1}>RecycleQuest</Text>
      
-   
-    <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-        placeholder="Username"
-      />
-      <TextInput
-        secureTextEntry={true}
-        style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="Password"
-        
-        
-      />
+      <View >
+        <View  >
 
-    <Link href="/home" asChild>
-          <Pressable style={styles.button} onPress={onPress}>
-          <Text style={styles.text}>{title}</Text>
-        </Pressable>
-        </Link>
+        <View>
+            <View>
+            
+              <TextInput
+              style={styles.input}
+                placeholder="Display Name"
+                onChangeText={(text) => setDisplayName({displayName:text})}
+              />
+            </View>
+          </View>
+          <View>
+            <View>
+            
+              <TextInput
+              style={styles.input}
+                placeholder="Username"
+                onChangeText={(text) => setUserName({userName:text})}
+              />
+            </View>
+          </View>
 
-        <Link href="/login"><Text>Already have an account? Log in!</Text></Link>
-  
-     
-    </View>
+          <View>
+            <View>
+             
+              <TextInput
+              secureTextEntry={true}
+              style={styles.input}
+                placeholder="Password"
+                onChangeText={(text) => setPassword({password: text})}
+              />
+            </View>
+          </View>
+
+          <View>
+            <View>
+            
+              <TextInput
+              style={styles.input}
+                placeholder="County"
+                onChangeText={(text) => setCounty({county:text})}
+              />
+            </View>
+          </View>
+
+
+          <View>
+            <Button title="Submit" /*</View>disabled={isLoading}*/ onPress={(e) => handleSubmit(e)}>
+            <Text>Login</Text>
+            </Button>
+            {error && <div className="error">{error}</div>}
+             <Link href="/login"><Text style={styles.link}>Already have an account? Log in!</Text></Link>
+          </View>
+        </View>
+      </View>
+      </View>
   );
 }
 
@@ -111,12 +129,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#EDFFCC',
   },
+   
+ 
   input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+ 
   },
   title: {
     fontSize: 20,
@@ -132,6 +154,10 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  link:{
+    color: 'blue',
+
+},
   button: {
     alignItems: 'center',
     justifyContent: 'center',
