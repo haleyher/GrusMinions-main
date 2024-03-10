@@ -54,7 +54,7 @@ export default function TabTwoScreen() {
             </View>
           </View>
           <View>
-            <Button title="Submit" /*</View>disabled={isLoading}*/ onPress={(e) => handleSubmit(e)}>
+            <Button title="Submit" onPress={(e) => handleSubmit(e)}>
             <Text>Login</Text>
             </Button>
             {error && <div className="error">{error}</div>}

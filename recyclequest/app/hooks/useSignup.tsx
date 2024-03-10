@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
 import fetch from 'node-fetch-native';
 import axios from 'axios';
 
 export const useSignup = () => {
   const [error, setError] = useState<boolean | null>();
   const [isLoading, setIsLoading] = useState<boolean | null>();
-  const dispatch = useAuthContext();
+
 
   
 
@@ -15,17 +14,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const mergedJSON = Object.assign({}, displayName, userName, password, county);
-
-
-const dataone = {
-     displayName: displayName,
-    userName: userName, 
-    password: password, 
-    county: county,
-    
-
-};    
+    const mergedJSON = Object.assign({}, displayName, userName, password, county); 
 
  
 const response = axios.post('https://vectorapi-y9k3.onrender.com/api/users', mergedJSON, 
