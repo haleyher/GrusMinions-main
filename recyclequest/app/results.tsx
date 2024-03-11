@@ -1,16 +1,14 @@
 
-import { StyleSheet } from 'react-native';
-import { Text, View, Button, Alert } from '@/components/Themed';
+import { StyleSheet, Button, Alert } from 'react-native';
+import { Text, View } from '@/components/Themed';
 import React, {useState} from 'react';
-import {axios} from 'axios';
+import axios from 'axios';
 
 var inputData = "/Users/honiluna/Desktop/GrusMinions-main/recyclequest/waterbottle.png";
 
 export default function ModalScreen() {
 
   const [prediction, setPrediction] = useState('');
-
-  
 
   const sendRequest = async () => {
     try {
@@ -28,7 +26,7 @@ export default function ModalScreen() {
       <Text>results...</Text>
       <View>
       <Button title="Send Request" onPress={sendRequest} />
-      <Text>{prediction}</Text>  // Display the prediction in your app
+      <Text>{prediction}</Text>  
     </View>
       
     </View>
