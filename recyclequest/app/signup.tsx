@@ -6,39 +6,6 @@ import {useState} from 'react';
 import axios from 'axios';
 import fetch from 'node-fetch-native';
 import {useSignup} from './hooks/useSignup';
-  
-
-// const TextInputExample = () => {
-//   const [text, onChangeText] = React.useState('Useless Text');
-// //   const [number, onChangeNumber] = React.useState('');
-
-  
-// };
-
-const data = {
-      displayName: "bobby",
-      userName: "bob", 
-      password: "bobbyyyyy", 
-      county: "bob",
-      
-  
-  };  
-
-  axios.post('https://vectorapi-y9k3.onrender.com/api/users', data, 
-  {"headers": {
-      
-    "content-type": "application/json",
-    
-    },
-  })
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error("Error sending data: ", error);
-  });
-
-
 
 export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | undefined; }) {
   const { onPress, title = 'Sign Up' } = props;

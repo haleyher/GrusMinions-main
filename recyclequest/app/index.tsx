@@ -9,12 +9,6 @@ export default function TabOneScreen(props: { onPress: any; title?: "Sign In" | 
     <View style={styles.container}>
       <Text style={styles.title}>Recycle Quest</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
-      {/* <Button onPress={()=> navigation.navigate("two")} title="Enter" color="#841584" /> */}
-      {/* <a onClick={() => { document.location.href = "three.tsx"; }}>Go to Profile</a>   */}
-      {/* <Link href="/two" asChild> 
-      <Pressable> <Text>About</Text> </Pressable></Link> */}
-      
       <Link href="/login" asChild>
       <Pressable style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>

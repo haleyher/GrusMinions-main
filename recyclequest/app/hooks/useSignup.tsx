@@ -7,14 +7,14 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState<boolean | null>();
 
 
-  
-
   const signup = async (displayName, userName, password, county) => {
     console.log(displayName, userName, password, county);
     setIsLoading(true);
     setError(null);
 
     const mergedJSON = Object.assign({}, displayName, userName, password, county); 
+
+    console.log(mergedJSON)
 
  
 const response = axios.post('https://vectorapi-y9k3.onrender.com/api/users', mergedJSON, 
@@ -28,26 +28,10 @@ const response = axios.post('https://vectorapi-y9k3.onrender.com/api/users', mer
   console.log(response.data);
 })
 .catch(error => {
-  console.error("Error sending data: ", error.response.data);
+  console.error("Error sending data: ", error);
 }); 
 
-    
-
-    // const response = await fetch("https://vectorapi-y9k3.onrender.com/api/users", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(dataone ),
-    // }).then(response => {
-    //     console.log( response.json());
-    //   }).catch(error => {
-    //       console.error("Error sending data: ", error);
-    //     }); ;
-
-
-
-    const json = await response.json();
+    const json = await response;
 
     if (!response.ok) {
       setIsLoading(false);

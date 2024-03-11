@@ -3,8 +3,6 @@ import { Text, View} from '@/components/Themed';
 import { Link } from 'expo-router';
 import React from 'react';
 import {useState} from 'react';
-import axios from 'axios';
-import fetch from 'node-fetch-native';
 import {useLogin} from './hooks/useLogin';
 
 
@@ -26,8 +24,6 @@ export default function TabTwoScreen() {
   
         <Text style={styles.h1}>RecycleQuest</Text>
 
-      
-
         <View >
         <View style={styles.signin} >
           <View>
@@ -35,7 +31,6 @@ export default function TabTwoScreen() {
             
               <TextInput
               style={styles.input}
-                // value={userName}
                 placeholder="Username"
                 onChangeText={(text) => setUserName({userName:text})}
               />
@@ -46,8 +41,8 @@ export default function TabTwoScreen() {
             <View>
              
               <TextInput
+              secureTextEntry={true}
               style={styles.input}
-                // value={passwordAttempt}
                 placeholder="Password"
                 onChangeText={(text) => setPasswordAttempt({passwordAttempt: text})}
               />
@@ -62,34 +57,6 @@ export default function TabTwoScreen() {
           </View>
         </View>
       </View>
-       
-     
-      {/* <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-          placeholder="Username"
-        />
-        <TextInput
-          secureTextEntry={true}
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="Password"
-          
-          
-        /> */}
-  
-      {/* <Link href="/home" asChild>
-            <Pressable style={styles.button} onPress={onPress}>
-            <Text style={styles.text}>{title}</Text>
-          </Pressable>
-          </Link> */}
-
-
-    {/* <Link href="/signup"><Text style={styles.link}>Don't have an account? Sign Up!</Text></Link> */}
-  
-     
        
       </View>
     );
