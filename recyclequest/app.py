@@ -13,7 +13,7 @@ def predicting():
     # image = '/Users/honiluna/Desktop/GrusMinions-main/recyclequest/waterbottle.png'
     prediction = predict_image(image)
     return jsonify({'prediction': prediction}) 
-    return prediction
+    # return prediction
     
 
 @app.route('/')

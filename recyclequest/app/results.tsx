@@ -17,7 +17,7 @@ export default function ModalScreen() {
       });
       setPrediction(response.data.prediction);
     } catch (error) {
-      Alert.alert('Error', error.message);
+      console.log('Error', error.message);
     }
   };
 
