@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, TextInput, Button } from 'react-native';
+import { StyleSheet, TextInput, Button } from 'react-native';
 import { Text, View} from '@/components/Themed';
 import { Link } from 'expo-router';
 import React from 'react';
@@ -6,11 +6,14 @@ import {useState} from 'react';
 import {useLogin} from './hooks/useLogin';
 
 
-export default function TabTwoScreen() {
+
+export default function LoginScreen() {
 
     const [userName, setUserName] = useState('');
     const [passwordAttempt, setPasswordAttempt] = useState('');
     const { login, error, isLoading } = useLogin();
+
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,8 +29,9 @@ export default function TabTwoScreen() {
 
         <View >
         <View style={styles.signin} >
+          <View style={styles.box2}>
           <View>
-            <View>
+            <View style={styles.box}>
             
               <TextInput
               style={styles.input}
@@ -38,7 +42,7 @@ export default function TabTwoScreen() {
           </View>
 
           <View>
-            <View>
+            <View style={styles.box}>
              
               <TextInput
               secureTextEntry={true}
@@ -48,11 +52,13 @@ export default function TabTwoScreen() {
               />
             </View>
           </View>
-          <View>
+          </View>
+          <View style={styles.box}>
             <Button title="Submit" onPress={(e) => handleSubmit(e)}>
             <Text>Login</Text>
             </Button>
             {error && <div className="error">{error}</div>}
+            
              <Link href="/signup"><Text style={styles.link}>Don't have an account? Sign Up!</Text></Link>
           </View>
         </View>
@@ -64,6 +70,12 @@ export default function TabTwoScreen() {
 
 
   const styles = StyleSheet.create({
+    box:{
+      backgroundColor: '#EDFFCC',
+    },
+    box2:{
+      backgroundColor: '#95a86f',
+    },
     container: {
       flex: 1,
       alignItems: 'center',
@@ -72,10 +84,12 @@ export default function TabTwoScreen() {
     },
     signin:{
         alignItems: 'center',
+        backgroundColor: '#EDFFCC',
     },
 
     link:{
         color: 'blue',
+        backgroundColor: '#EDFFCC',
 
     },
     h1: {
@@ -88,6 +102,9 @@ export default function TabTwoScreen() {
       margin: 12,
       borderWidth: 1,
       padding: 10,
+      borderColor: "#3B5704",
+      backgroundColor: "white",
+      
     },
     title: {
       fontSize: 20,
@@ -97,6 +114,7 @@ export default function TabTwoScreen() {
       marginVertical: 30,
       height: 1,
       width: '80%',
+      
     },
     button: {
       alignItems: 'center',
@@ -104,11 +122,12 @@ export default function TabTwoScreen() {
       paddingVertical: 12,
       paddingHorizontal: 32,
       elevation: 3,
-      backgroundColor: '#1B1F3B',
-      
+      backgroundColor: '#3B5704',
+      marginVertical: 30,
       marginBottom: 25,
       borderRadius: 12,
       color: "black",
+     
   
     },
     text: {

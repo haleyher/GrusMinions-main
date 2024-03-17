@@ -2,15 +2,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
 import { useColorScheme } from '@/components/useColorScheme';
-import Login from './login';
-import Signup from './signup';
-import Home from './(tabs)/home';
 
 
 export {
@@ -60,20 +54,13 @@ function RootLayoutNav() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="signup" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="profile" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
   );
 }
 
-const Stacks = createNativeStackNavigator();
 
-function MyStack() {
-  return (
-    <Stacks.Navigator>
-      <Stacks.Screen name="login" component={Login} />
-      <Stacks.Screen name="home" component={Home} />
-    </Stacks.Navigator>
-  );
-}
+
+
 

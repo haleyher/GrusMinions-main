@@ -5,6 +5,10 @@ import { Camera } from 'expo-camera';
 import { useState, useRef, useEffect } from 'react';
 import {shareAsync} from 'expo-sharing';
 import * as MediaLibrary from 'expo-media-library';
+import { useRoute, useNavigation} from "@react-navigation/native";
+import photoContext from "../hooks/photoContext";
+
+
 
 
 export default function TabTwoScreen() {
@@ -12,6 +16,7 @@ export default function TabTwoScreen() {
   const [hasCameraPermission, setHasCameraPermission] = useState<boolean | undefined>();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState<boolean | undefined>();
   const [photo, setPhoto] = useState<boolean | undefined>();
+  const navigation = useNavigation();
 
 
   useEffect(() => {
@@ -54,16 +59,24 @@ if (photo) {
     });
   };
 
+  console.log(photo.uri)
+
+  const bob = {photo: "hi",};
+
+  console.log(bob)
   
 
   return (
+    
     <SafeAreaView style={styles.container}>
+      
       <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
       <Button title="Share" onPress={sharePic} />
       {hasMediaLibraryPermission ? <Button title="Save" onPress={savePhoto} /> : undefined}
       <Button title="Discard" onPress={() => setPhoto(undefined)} />
       <Link href="/results" asChild>
-      <Button title="Results" />
+      
+      <Button title="Results" onPress={() => navigation.navigate('Results', { bob})}/>
       </Link>
     </SafeAreaView>
   );

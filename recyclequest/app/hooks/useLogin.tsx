@@ -1,14 +1,17 @@
 import { useState } from "react";
 import axios from 'axios';
-import {NavigationHelpersContext, useNavigation} from '@react-navigation/native';
-let x;
+import {NavigationHelpersContext, useLinkProps, useNavigation} from '@react-navigation/native';
+import { LoginScreenProps, RootStackParamList } from "./types";
+import * as RootNavigation from './RootNavigation';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack'; 
 
+
+let x;
 
 export const useLogin = () => {
   const [error, setError] = useState<boolean | null>();
   const [isLoading, setIsLoading] = useState<boolean | null>();
-  const navigation = useNavigation();
-  
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const login = async(userName, passwordAttempt) => {
     setIsLoading(true);
@@ -33,8 +36,10 @@ export const useLogin = () => {
       console.error("Error sending data: ", error);
     }); 
 
+    const data = response;
+    console.log(data);
     const json = await response;
-  
+    console.log(x);
 
     if (x == 0) {
       setIsLoading(false);
@@ -43,10 +48,18 @@ export const useLogin = () => {
     }
 
     if (x == 1) {
-      // save user to local storage
-      // localStorage.setItem("user", JSON.stringify(json));
-  
-      navigation.navigate('home', { replace: true });
+      console.log(userName.userName);
+      var bob = userName.userName;
+      console.log(bob);
+    
+      // navigation.navigate('Tabs', {
+      //   screen: 'Home', 
+      //   params: {userName:bob},
+      // });
+
+
+      navigation.navigate('home');
+
       setIsLoading(false);
     }
 
