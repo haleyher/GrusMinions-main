@@ -33,7 +33,7 @@ export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | 
         <View  >
 
         <View>
-            <View>
+            <View style = {styles.box}>
             
               <TextInput
               style={styles.input}
@@ -43,7 +43,7 @@ export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | 
             </View>
           </View>
           <View>
-            <View>
+            <View style = {styles.box}>
             
               <TextInput
               style={styles.input}
@@ -54,7 +54,7 @@ export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | 
           </View>
 
           <View>
-            <View>
+            <View style = {styles.box}>
              
               <TextInput
               secureTextEntry={true}
@@ -66,7 +66,7 @@ export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | 
           </View>
 
           <View>
-            <View>
+            <View style = {styles.box}>
             
               <TextInput
               style={styles.input}
@@ -77,7 +77,7 @@ export default function TabTwoScreen(props: { onPress: any; title?: "Sign In" | 
           </View>
 
 
-          <View>
+          <View style = {styles.box}>
             <Button title="Submit" /*</View>disabled={isLoading}*/ onPress={(e) => handleSubmit(e)}>
             <Text>Login</Text>
             </Button>
@@ -98,6 +98,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#EDFFCC',
   },
+  box:{
+    backgroundColor: '#EDFFCC',
+  },
    
  
   input: {
@@ -105,6 +108,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "white",
  
   },
   title: {

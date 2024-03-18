@@ -3,7 +3,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
@@ -34,7 +33,7 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/profile" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
@@ -56,7 +55,7 @@ export default function TabLayout() {
           title: 'Camera',
           tabBarIcon: ({ color }) => <Feather name="camera" size={24} color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/profile" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
@@ -75,10 +74,10 @@ export default function TabLayout() {
 <Tabs.Screen
         name="progress"
         options={{
-          title: 'Progress',
+          title: 'Leaderboard',
           tabBarIcon: ({ color }) => <AntDesign name="barschart" size={24} color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/profile" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome

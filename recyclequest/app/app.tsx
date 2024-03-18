@@ -1,59 +1,51 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Login from "./login";
+import LoginScreen from "./login";
 import Signup from "./signup";
-import Home from "./(tabs)/home";
-import { useEffect, useState } from "react";
-import { Stack } from 'expo-router';
+import Results from "./results"
+import Camera from "./(tabs)/camera"
 import * as React from 'react';
+import { RootStackParamList } from './hooks/types';
+import tabs from './(tabs)/tabs'
+import HomeScreen from './(tabs)/home';
 
 function App() {
-  const user  = useAuthContext();
-  const [loggedIn, setLoggedIn] = useState(null);
-  const Stack = createNativeStackNavigator();
-
-
-  // makes sure that we check if the user is logged in, only if the user is logged in can be
-  useEffect(() => {
-    setLoggedIn(Boolean(user));
-  }, [user]);
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <NavigationContainer>
-      {loggedIn !== null && (
+  
         <Stack.Navigator>
           <Stack.Screen
             name="Login"
-            component = {Login}
-            element={!user ? <Login /> : <Navigate to="/home" />}
-          />
-          <Stack.Screen
-            exact
-            path="/signup"
-            element={!user ? <Signup /> : <Navigate to="/home" />}
+            component = {LoginScreen}
           />
 
           <Stack.Screen
-            exact
-            path="/"
-            element={!user ? <Navigate to="/login" /> : <Home />}
+            name="Signup"
+            component = {Signup}
+          />
+          
+          <Stack.Screen
+           name="Results"
+            component = {Results}
           />
 
           <Stack.Screen
-            exact
-            path="/generator"
-            element={user ? <Generator /> : <Navigate to="/login" />}
+            name = "Camera"
+            component = {Camera}
+      
           />
 
           <Stack.Screen
-            exact
-            path="/home"
-            element={user ? <Home /> : <Navigate to="/login" />}
+            name="Home"
+            component={HomeScreen}
+            // options={{ headerShown: false }}
+            
           />
 
-          <Stack.Screen path="*" element={<Navigate to="/" />} />
         </Stack.Navigator>
-      )}
+     
     </NavigationContainer>
   );
 }
